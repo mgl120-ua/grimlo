@@ -21,58 +21,26 @@ export default function ContactSection() {
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-8">
             ¿Listo para lanzar tu sitio web?
           </h2>
-          <p className="text-gray-400 max-w-xl mx-auto mb-10">
-            Selecciona el paquete que mejor se adapte a tu proyecto y cuéntanos tus dudas.
-          </p>
         </AnimatedSection>
 
         <AnimatedSection delay={200}>
-          <form className="flex flex-col gap-6 text-left bg-gray-900 p-8 rounded-2xl shadow-lg">
-            {/* Selector de Paquetes */}
-            <div>
-              <Label className="mb-2 block text-gray-300 font-medium">
-                Selecciona un paquete
-              </Label>
-              <RadioGroup
-                value={selectedPackage}
-                onValueChange={setSelectedPackage}
-                className="grid gap-4"
-              >
-                <div className="flex items-center space-x-3">
-                  <RadioGroupItem value="lite" id="lite" />
-                  <Label htmlFor="lite" className="cursor-pointer">LITE WEB – €99</Label>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <RadioGroupItem value="advanced" id="advanced" />
-                  <Label htmlFor="advanced" className="cursor-pointer">ADVANCED WEB – €250</Label>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <RadioGroupItem value="ecommerce" id="ecommerce" />
-                  <Label htmlFor="ecommerce" className="cursor-pointer">ECOMMERCE – €500</Label>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <RadioGroupItem value="custom" id="custom" />
-                  <Label htmlFor="custom" className="cursor-pointer">FULL CUSTOM – Consultar</Label>
-                </div>
-              </RadioGroup>
-            </div>
-
+          <form className="flex flex-col gap-6 text-left bg-neutral-900 p-8 rounded-2xl shadow-lg">
             {/* Email */}
             <Input
               type="email"
               placeholder="Introduce tu correo electrónico"
-              className="bg-gray-800 border-gray-700 text-white placeholder-gray-500 px-4 py-3 rounded-xl focus:ring-white focus:border-white"
+              className="bg-neutral-800 border-neutral-700 text-white placeholder-neutral-500 px-4 py-3 rounded-xl focus:ring-white focus:border-white"
               required
             />
 
             {/* Mensaje */}
             <Textarea
               placeholder="Cuéntanos tus dudas o qué necesitas..."
-              className="bg-gray-800 border-gray-700 text-white placeholder-gray-500 px-4 py-3 rounded-xl focus:ring-white focus:border-white min-h-[120px]"
+              className="bg-neutral-800 border-neutral-700 text-white placeholder-neutral-500 px-4 py-3 rounded-xl focus:ring-white focus:border-white min-h-[120px]"
             />
 
             {/* Botón */}
-            <Button className="px-8 py-4 text-lg font-medium rounded-xl bg-white text-black hover:bg-gray-200 transition-colors">
+            <Button className="px-8 py-4 text-lg font-medium rounded-xl bg-white text-black hover:bg-neutral-200 transition-colors">
               Enviar Solicitud
             </Button>
           </form>

@@ -13,9 +13,9 @@ export default function PackageSection({ packagesRef }) {
   const packages = [
     {
       name: "LITE WEB",
-      headline: "Tu espacio en internet",
+      headline: "Tu primera web profesional lista en días",
       description:
-        "Diseñada para darte visibilidad rápida y contacto directo vía email.",
+        "Ideal para portfolios, landing pages, presentaciones personales o de marca. Diseñada para darte visibilidad rápida con estilo moderno y contacto directo vía email.",
       benefits: [
         "Diseño responsive y moderno",
         "Optimización SEO básica",
@@ -30,7 +30,7 @@ export default function PackageSection({ packagesRef }) {
       name: "ADVANCED WEB",
       headline: "Gestiona tu contenido sin programar",
       description:
-        "Web multipágina con panel de administración intuitivo. Perfecta para catálogos o cualquier negocio que necesite control total sobre su contenido.",
+        "Web multipágina con panel de administración intuitivo. Perfecta para inmobiliarias, academias, catálogos o cualquier negocio que necesite control total sobre su contenido.",
       benefits: [
         "Panel de administración fácil de usar",
         "SEO avanzado para posicionar mejor",
