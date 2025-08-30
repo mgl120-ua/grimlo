@@ -1,9 +1,7 @@
 import './globals.css'
-import { Inter } from 'next/font/google'
+import { GeistSans } from 'geist/font/sans'
+import { GeistMono } from 'geist/font/mono'
 import { cn } from '@/lib/utils'
-
-// Define la fuente Inter
-const inter = Inter({ subsets: ['latin'], variable: '--font-sans' })
 
 export const metadata = {
   title: 'Gimlo - Tu sitio web perfecto',
@@ -17,11 +15,10 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="es">
+    <html lang="es" className={`${GeistSans.variable} ${GeistMono.variable}`}>
       <body
         className={cn(
-          'min-h-screen bg-background font-sans antialiased',
-          inter.variable // Aplica la variable CSS de la fuente
+          'min-h-screen bg-background font-sans antialiased'
         )}
       >
         {children}
