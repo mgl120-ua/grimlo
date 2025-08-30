@@ -18,7 +18,7 @@ export default function HeroSection({ onScroll }) {
       {/* Fondo Desktop */}
       <motion.div className="absolute inset-0 hidden md:block" style={{ y: parallax }}>
         <Image
-          src="/hero.png"
+          src="/.gif"
           alt="Fondo Hero Desktop"
           fill
           priority
