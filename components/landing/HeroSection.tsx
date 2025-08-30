@@ -10,7 +10,10 @@ export default function HeroSection({ onScroll }) {
   const MotionButton = motion(Button)
 
   return (
-    <section className="relative h-screen flex items-center justify-center overflow-hidden">
+    <section
+      id="home"
+      className="relative h-screen flex items-center justify-center overflow-hidden"
+    >
 
       {/* Fondo Desktop */}
       <motion.div className="absolute inset-0 hidden md:block" style={{ y: parallax }}>

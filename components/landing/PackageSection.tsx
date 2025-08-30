@@ -85,6 +85,7 @@ export default function PackageSection({ packagesRef }) {
 
   return (
     <section
+      id="services"
       ref={packagesRef}
       className="relative w-full bg-black py-20 text-white"
       aria-labelledby="packages-title"

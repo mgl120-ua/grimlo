@@ -5,6 +5,7 @@ import PackageSection from "@/components/landing/PackageSection"
 import BenefitsSection from "@/components/landing/BenefitsSection"
 import TestimonialsSection from "@/components/landing/TestimonialsSection"
 import ContactSection from "@/components/landing/ContactSection"
+import Navbar from "@/components/landing/Navbar"
 
 // Importar más secciones como BenefitsSection, TestimonialsSection, ContactSection
 
@@ -17,6 +18,7 @@ export default function LandingPage() {
 
   return (
     <div className="flex flex-col min-h-screen bg-black text-white font-sans">
+      <Navbar />
       <HeroSection onScroll={scrollToPackages} />
       <PackageSection packagesRef={packagesRef} />
       <BenefitsSection/>

@@ -15,7 +15,10 @@ export default function ContactSection() {
   const MotionButton = motion(Button)
 
   return (
-    <section className="w-full py-24 md:py-32 bg-black text-white text-center relative border-t border-gray-800">
+    <section
+      id="contact"
+      className="w-full py-24 md:py-32 bg-black text-white text-center relative border-t border-gray-800"
+    >
       <div className="container mx-auto px-4 md:px-6 max-w-2xl">
 
         <AnimatedSection>

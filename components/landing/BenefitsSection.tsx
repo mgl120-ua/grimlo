@@ -5,7 +5,10 @@ import AnimatedSection from "./AnimatedSection"
 
 export default function BenefitsSection() {
   return (
-    <section className="w-full py-24 md:py-32 bg-white text-black">
+    <section
+      id="about"
+      className="w-full py-24 md:py-32 bg-white text-black"
+    >
       <div className="container mx-auto px-4 md:px-6 text-center">
         <AnimatedSection>
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-12">
