@@ -2,6 +2,7 @@ import './globals.css'
 import { GeistSans } from 'geist/font/sans'
 import { GeistMono } from 'geist/font/mono'
 import { cn } from '@/lib/utils'
+import Navbar from "@/components/landing/Navbar"
 
 export const metadata = {
   title: 'Gimlo - Tu sitio web perfecto',
@@ -21,6 +22,8 @@ export default function RootLayout({
           'min-h-screen bg-background font-sans antialiased'
         )}
       >
+        
+        <Navbar />
         {children}
       </body>
     </html>
