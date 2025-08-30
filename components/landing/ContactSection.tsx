@@ -6,12 +6,13 @@ import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Label } from "@/components/ui/label"
-import { ArrowRight, PhoneIcon as Whatsapp } from "lucide-react"
-import Link from "next/link"
+import { PhoneIcon as Whatsapp } from "lucide-react"
+import { motion } from "framer-motion"
 import AnimatedSection from "./AnimatedSection"
 
 export default function ContactSection() {
   const [selectedPackage, setSelectedPackage] = useState("lite")
+  const MotionButton = motion(Button)
 
   return (
     <section className="w-full py-24 md:py-32 bg-black text-white text-center relative border-t border-gray-800">
@@ -24,7 +25,12 @@ export default function ContactSection() {
         </AnimatedSection>
 
         <AnimatedSection delay={200}>
-          <form className="flex flex-col gap-6 text-left bg-neutral-900 p-8 rounded-2xl shadow-lg">
+          <motion.form
+            className="flex flex-col gap-6 text-left bg-neutral-900 p-8 rounded-2xl shadow-lg"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
             {/* Email */}
             <Input
               type="email"
@@ -40,23 +46,30 @@ export default function ContactSection() {
             />
 
             {/* Botón */}
-            <Button className="px-8 py-4 text-lg font-medium rounded-xl bg-white text-black hover:bg-neutral-200 transition-colors">
+            <MotionButton
+              className="px-8 py-4 text-lg font-medium rounded-xl bg-white text-black hover:bg-neutral-200"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
               Enviar Solicitud
-            </Button>
-          </form>
+            </MotionButton>
+          </motion.form>
         </AnimatedSection>
       </div>
 
       {/* Icono flotante de WhatsApp */}
-      <Link
+      <motion.a
         href="https://wa.me/YOUR_WHATSAPP_NUMBER" // Reemplazar con número real
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition-colors z-50"
+        className="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 z-50"
         aria-label="Chatear en WhatsApp"
+        animate={{ y: [0, -5, 0] }}
+        transition={{ repeat: Infinity, duration: 2 }}
+        whileHover={{ scale: 1.1 }}
       >
         <Whatsapp className="h-8 w-8" />
-      </Link>
+      </motion.a>
     </section>
   )
 }

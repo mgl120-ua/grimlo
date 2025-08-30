@@ -9,6 +9,7 @@ import AnimatedSection from "./AnimatedSection"
 
 export default function PackageSection({ packagesRef }) {
   const scrollRef = useRef(null)
+  const MotionButton = motion(Button)
 
   const packages = [
     {
@@ -134,6 +135,8 @@ export default function PackageSection({ packagesRef }) {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
               viewport={{ once: true }}
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
             >
               <AnimatedSection>
                 <h3 className="text-2xl md:text-3xl font-bold mb-2">
@@ -163,21 +166,25 @@ export default function PackageSection({ packagesRef }) {
 
 
                 <div className="flex flex-col gap-3">
-                  <Button
+                  <MotionButton
                     asChild
                     className="px-6 py-3 rounded-full bg-gray-800 text-white hover:bg-gray-700"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                   >
                     <Link href={pkg.link} title={`Ver ejemplo de ${pkg.name}`}>
                       Ver Ejemplo{" "}
                       <ArrowRight className="ml-2 h-4 w-4 inline-block" />
                     </Link>
-                  </Button>
-                  <Button
+                  </MotionButton>
+                  <MotionButton
                     aria-label={pkg.cta}
                     className="px-6 py-3 rounded-full bg-white text-black hover:bg-gray-200"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                   >
                     {pkg.cta}
-                  </Button>
+                  </MotionButton>
                 </div>
 
 
