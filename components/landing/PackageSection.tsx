@@ -2,10 +2,8 @@
 
 import { useRef, useMemo } from "react"
 import { motion } from "framer-motion"
-import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, CheckCircle2, Sparkles } from "lucide-react"
-import AnimatedSection from "./AnimatedSection"
+import { CheckCircle2, ChevronLeft, ChevronRight, Sparkles } from "lucide-react"
 
 type Pkg = {
   name: string
@@ -15,12 +13,10 @@ type Pkg = {
   oldPrice?: string
   price: string
   cta: string
-  link: string
 }
 
 export default function PackageSection({ packagesRef }: { packagesRef: React.RefObject<HTMLDivElement> }) {
   const scrollRef = useRef<HTMLDivElement | null>(null)
-  const MotionButton = motion(Button)
 
   const packages: Pkg[] = useMemo(
     () => [
@@ -32,8 +28,7 @@ export default function PackageSection({ packagesRef }: { packagesRef: React.Ref
         benefits: ["Diseño responsive", "SEO básico", "Formulario de contacto"],
         oldPrice: "€300",
         price: "€150",
-        cta: "Contactanos",
-        link: "/lite-web",
+        cta: "Contáctanos",
       },
       {
         name: "ADVANCED WEB",
@@ -44,7 +39,6 @@ export default function PackageSection({ packagesRef }: { packagesRef: React.Ref
         oldPrice: "€500",
         price: "€250",
         cta: "Solicitar esta web",
-        link: "#",
       },
       {
         name: "ECOMMERCE",
@@ -54,8 +48,7 @@ export default function PackageSection({ packagesRef }: { packagesRef: React.Ref
         benefits: ["Pagos integrados", "Catálogo ilimitado", "Gestión de pedidos"],
         oldPrice: "€1000",
         price: "€500",
-        cta: "Lanza tu tienda con nosotros",
-        link: "#",
+        cta: "Lanza tu tienda",
       },
       {
         name: "FULL CUSTOM",
@@ -63,159 +56,127 @@ export default function PackageSection({ packagesRef }: { packagesRef: React.Ref
         description:
           "Backend robusto y funcionalidades personalizadas para SaaS, plataformas y proyectos ambiciosos.",
         benefits: ["Funcionalidades a medida", "Escalable y rápido", "Diseño 100% alineado"],
-        oldPrice: "",
         price: "Consultar",
         cta: "Habla con nosotros",
-        link: "#",
       },
     ],
     []
   )
 
-  const scroll = (direction: "left" | "right") => {
+  const scroll = (dir: "left" | "right") => {
     const el = scrollRef.current
     if (!el) return
-    const { scrollLeft, clientWidth } = el
-    const to = direction === "left" ? scrollLeft - clientWidth : scrollLeft + clientWidth
-    el.scrollTo({ left: to, behavior: "smooth" })
+    const amount = Math.max(el.clientWidth * 0.9, 280) // buen paso en móvil
+    el.scrollTo({ left: dir === "left" ? el.scrollLeft - amount : el.scrollLeft + amount, behavior: "smooth" })
   }
 
-  const featuredIndex = 1 // destacar ADVANCED
+  const scrollToContact = () => {
+    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth", block: "start" })
+  }
 
   return (
     <section
       id="services"
       ref={packagesRef as any}
-      className="relative w-full bg-[#0c0c0b] py-20 text-white"
+      className="relative w-full bg-black py-28 text-white"
       aria-labelledby="packages-title"
     >
-      {/* Header mejorado */}
-      <div className="relative mx-auto max-w-3xl px-6 text-center mb-16">
-        <span className="inline-block mb-4 rounded-full border border-white/10 bg-white/5 px-4 py-1 text-xs font-medium uppercase tracking-wide text-white/60">
-          Nuestros Servicios
-        </span>
-
-        
-
-        <p className="text-base md:text-lg text-white/60 leading-relaxed">
+      {/* Header */}
+      <div className="relative mx-auto max-w-4xl px-6 text-center mb-20">
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.15 }}
+          viewport={{ once: true }}
+          className="mt-6 text-lg md:text-xl text-white/70 leading-relaxed"
+        >
           Elige la web que mejor se adapta a tu proyecto y empieza a{" "}
           <span className="font-semibold text-white">atraer clientes, vender online y destacar</span>.
-        </p>
+        </motion.p>
       </div>
 
-      {/* Cards */}
+      {/* Carrusel + Botones móviles */}
       <div className="relative">
-        {/* Botones de scroll mobile */}
-        <button
-          onClick={() => scroll("left")}
-          aria-label="Ver paquetes anteriores"
-          className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-white/10 text-white p-3 rounded-full hover:bg-white/20 lg:hidden"
-        >
-          ‹
-        </button>
+        {/* Botones visibles SOLO en móvil/tablet, ocultos en desktop */}
+        <div className="lg:hidden pointer-events-none absolute inset-y-0 left-0 right-0 z-20 flex items-center justify-between px-2">
+          <button
+            onClick={() => scroll("left")}
+            aria-label="Ver paquetes anteriores"
+            className="pointer-events-auto grid place-items-center h-11 w-11 rounded-full bg-white/10 backdrop-blur border border-white/20 hover:bg-white/20 active:scale-95 transition"
+          >
+            <ChevronLeft className="h-5 w-5" />
+          </button>
+          <button
+            onClick={() => scroll("right")}
+            aria-label="Ver siguientes paquetes"
+            className="pointer-events-auto grid place-items-center h-11 w-11 rounded-full bg-white/10 backdrop-blur border border-white/20 hover:bg-white/20 active:scale-95 transition"
+          >
+            <ChevronRight className="h-5 w-5" />
+          </button>
+        </div>
 
         <div
           ref={scrollRef}
-          className="
-            flex gap-8 overflow-x-auto snap-x snap-mandatory px-8 scrollbar-hide scroll-smooth
-            sm:px-12 md:px-16
-            lg:grid lg:grid-cols-4 lg:gap-8 lg:px-8 lg:overflow-visible
-          "
+          className="flex gap-8 overflow-x-auto px-8 scrollbar-hide scroll-smooth
+                     sm:px-12 md:px-16
+                     lg:grid lg:grid-cols-4 lg:gap-10 lg:px-12 lg:overflow-visible"
         >
-          {packages.map((pkg, i) => {
-            const featured = i === featuredIndex
-            return (
-              <motion.article
-                key={pkg.name}
-                className={`
-                  relative snap-center flex-shrink-0 w-[82%] sm:w-[60%] md:w-[46%] lg:w-full
-                  rounded-2xl p-8
-                  border ${featured ? "border-stone-300/30" : "border-stone-200/10"}
-                  bg-neutral-900/80 backdrop-blur
-                  shadow-[0_10px_30px_rgba(0,0,0,0.35)]
-                  /* 👉 claves para alinear */
-                  min-h-[560px] lg:min-h-[620px] flex flex-col
-                `}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.45, delay: i * 0.08 }}
-                viewport={{ once: true, amount: 0.3 }}
-                whileHover={{ y: -6 }}
-              >
-                {/* --- BLOQUE SUPERIOR (crece) --- */}
-                <div className="flex-1">
-                  {/* Badge */}
-                  <div className="mb-4 flex items-center justify-between">
-                    <span className="inline-flex items-center gap-2 rounded-full border border-white/15 px-3 py-1 text-xs text-white/70">
-                      {pkg.name}
-                    </span>
-                    {featured && (
-                      <span className="rounded-full bg-stone-200 text-black text-xs font-semibold px-3 py-1">
-                        Más popular
-                      </span>
-                    )}
-                  </div>
+          {packages.map((pkg, i) => (
+            <motion.article
+              key={pkg.name}
+              className="
+                group relative snap-center flex-shrink-0 w-[82%] sm:w-[60%] md:w-[46%] lg:w-full
+                rounded-3xl p-8 flex flex-col justify-between
+                border border-white/10 bg-gradient-to-br from-neutral-900/80 to-neutral-950/90
+                shadow-[0_0_40px_-10px_rgba(255,255,255,0.08)]
+                transition-all duration-300 hover:shadow-[0_0_80px_-10px_rgba(255,255,255,0.15)]
+                hover:-translate-y-2
+              "
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: i * 0.15 }}
+              viewport={{ once: true, amount: 0.3 }}
+            >
+              <h3 className="text-3xl md:text-4xl font-bold tracking-wide mb-2 bg-gradient-to-r from-zinc-200 to-zinc-400 bg-clip-text text-transparent">
+                {pkg.name}
+              </h3>
+              <div className="h-[2px] w-16 bg-gradient-to-r from-white/80 to-white/10 rounded-full mb-4" />
 
-                  {/* Headline + descripción */}
-                  <h3 className="text-2xl md:text-3xl font-bold leading-tight mb-2">
-                    {pkg.headline}
-                  </h3>
-                  <p className="text-white/70 text-sm md:text-base mb-4">
-                    {pkg.description}
-                  </p>
+              <p className="text-lg md:text-xl font-medium text-white/80 mb-3">{pkg.headline}</p>
+              <p className="text-white/70 text-sm md:text-base mb-6">{pkg.description}</p>
 
-                  {/* Beneficios */}
-                  <ul className="text-white/80 text-sm space-y-2">
-                    {pkg.benefits.map((b) => (
-                        <li key={b} className="flex items-start gap-2">
-                          <CheckCircle2 className="mt-0.5 h-4 w-4 text-stone-300" />
-                          <span>{b}</span>
-                        </li>
-                    ))}
-                  </ul>
-                </div>
+              <ul className="text-white/80 text-sm space-y-2 mb-6">
+                {pkg.benefits.map((b) => (
+                  <li key={b} className="flex items-start gap-2">
+                    <CheckCircle2 className="mt-0.5 h-4 w-4 text-white/60" />
+                    <span>{b}</span>
+                  </li>
+                ))}
+              </ul>
 
-                {/* --- BLOQUE INFERIOR (fijo) --- */}
-                <div className="mt-6">
-                  {pkg.oldPrice ? (
-                    <p className="text-sm text-white/50 line-through">{pkg.oldPrice}</p>
-                  ) : (
-                    <p aria-hidden className="h-5" />
-                  )}
+              <div>
+                {pkg.oldPrice ? (
+                  <p className="text-sm text-white/50 line-through">{pkg.oldPrice}</p>
+                ) : (
+                  <p aria-hidden className="h-5" />
+                )}
+                <p className="text-3xl font-extrabold mb-4">{pkg.price}</p>
 
-                  <p className="text-3xl font-extrabold mb-4">
-                    {pkg.price}
-                  </p>
-
-                  <div className="flex flex-col gap-3">
-                    <Button
-                      asChild
-                      className={`px-6 py-3 rounded-full ${featured ? "bg-white text-black hover:bg-stone-100" : "bg-stone-200 text-black hover:bg-stone-300"} font-medium`}
-                    >
-                      <Link href={pkg.link}>
-                        Ver ejemplo
-                      </Link>
-                    </Button>
-
-                    <Button className="px-6 py-3 rounded-full bg-transparent text-white border border-white/25 hover:border-white/50">
-                      {pkg.cta}
-                    </Button>
-                  </div>
-                </div>
-              </motion.article>
-            )
-          })}
-
-          
+                <Button
+                  onClick={() =>
+                    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth", block: "start" })
+                  }
+                  className="relative w-full px-6 py-3 rounded-xl font-semibold text-black
+                             bg-gradient-to-r from-zinc-200 to-zinc-400
+                             hover:from-white hover:to-zinc-200
+                             shadow-[0_0_30px_-5px_rgba(255,255,255,0.25)] transition"
+                >
+                  {pkg.cta}
+                </Button>
+              </div>
+            </motion.article>
+          ))}
         </div>
-
-        <button
-          onClick={() => scroll("right")}
-          aria-label="Ver siguientes paquetes"
-          className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-white/10 text-white p-3 rounded-full hover:bg-white/20 lg:hidden"
-        >
-          ›
-        </button>
       </div>
     </section>
   )

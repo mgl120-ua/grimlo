@@ -1,11 +1,13 @@
 "use client"
 
 import { useRef, useCallback } from "react"
-import HeroSection from "@/components/landing/HeroSection"
+import HeroAwwwards from "@/components/landing/HeroSection"
 import PackageSection from "@/components/landing/PackageSection"
 import BenefitsSection from "@/components/landing/BenefitsSection"
 import TestimonialsSection from "@/components/landing/TestimonialsSection"
 import ContactSection from "@/components/landing/ContactSection"
+import SeamlessDivider from "@/components/landing/SeamlessDivider"
+import SharedTicker from "@/components/landing/SharedTicker"
 
 export default function LandingPage() {
   const packagesRef = useRef<HTMLDivElement | null>(null)
@@ -24,32 +26,43 @@ export default function LandingPage() {
         Saltar al contenido
       </a>
 
-      <main id="main" className="flex flex-col min-h-screen bg-black text-white font-sans">
+      <main
+        id="main"
+        className="flex flex-col min-h-screen bg-black text-white font-sans"
+      >
         {/* HERO */}
-        {/* El propio Hero tiene id="home" */}
-        <HeroSection onScroll={scrollToPackages} />
+        <HeroAwwwards />
+
+        {/* Divider / transición */}
+        <SeamlessDivider label="Servicios" />
 
         {/* PACKAGES */}
-        {/* Asegúrate de que PackageSection tenga id="services" en su <section> 
-            y aplica scroll-mt para compensar la navbar */}
-        <div id="services" ref={packagesRef} className="scroll-mt-24 md:scroll-mt-28">
+        <div
+          id="services"
+          ref={packagesRef}
+          className="scroll-mt-24 md:scroll-mt-28"
+        >
           <PackageSection packagesRef={packagesRef} />
         </div>
 
+        {/* Ticker compartido */}
+        <SharedTicker
+          items={[
+            "Diseño premium",
+            "SEO técnico",
+            "Entrega rápida",
+            "UX minimalista",
+            "Soporte cercano",
+          ]}
+        />
+
         {/* BENEFITS */}
-        {/* Asegúrate de que BenefitsSection tenga id="about" en su <section> */}
         <div id="about" className="scroll-mt-24 md:scroll-mt-28">
           <BenefitsSection />
         </div>
 
-        {/* TESTIMONIALS (si lo activas, ponle id="testimonials" y scroll-mt) */}
-        {/* <div id="testimonials" className="scroll-mt-24 md:scroll-mt-28">
-          <TestimonialsSection />
-        </div> */}
-
         {/* CONTACT */}
-        {/* ContactSection ya tiene id="contact" → añade scroll-mt también dentro o aquí */}
-        <div className="scroll-mt-24 md:scroll-mt-28">
+        <div id="contact" className="scroll-mt-24 md:scroll-mt-28">
           <ContactSection />
         </div>
       </main>
