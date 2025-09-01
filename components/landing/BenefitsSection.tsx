@@ -12,7 +12,7 @@ const BENEFITS: Benefit[] = [
   { icon: Headset,     title: "Soporte cercano",    desc: "Hablas con personas. Iteramos rápido y contigo." },
   { icon: CheckCircle, title: "100% responsive",    desc: "Pixel-perfect en móvil, tablet y escritorio." },
   { icon: Code,        title: "Código propio",      desc: "Nada de plantillas: control, seguridad y velocidad." },
-  { icon: Rocket,      title: "Entrega rápida",     desc: "Publicamos en días, no en semanas." },
+  { icon: Rocket,      title: "Entrega rápida",     desc: "Adaptamos los tiempos a tus necesidades" },
   { icon: Globe,       title: "Listo para escalar", desc: "Infra, analytics y multilenguaje cuando toque." },
 ]
 

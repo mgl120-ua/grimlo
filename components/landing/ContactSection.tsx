@@ -107,24 +107,6 @@ export default function ContactSection() {
               </p>
             </div>
 
-            <ul className="grid grid-cols-2 sm:grid-cols-3 gap-3 text-sm">
-              {[
-                { k: "Entrega", v: "en días" },
-                { k: "SEO", v: "técnico real" },
-                { k: "Diseño", v: "minimalista" },
-                { k: "Soporte", v: "cercano" },
-                { k: "Código", v: "propio" },
-                { k: "Escala", v: "cuando toque" },
-              ].map((t) => (
-                <li
-                  key={t.k + t.v}
-                  className="rounded-full border border-white/12 px-3 py-2 text-white/70 text-center hover:border-white/30 transition-colors"
-                >
-                  {t.k} · {t.v}
-                </li>
-              ))}
-            </ul>
-
             <div className="flex items-center gap-3">
               <Link
                 href="https://wa.me/34667069082?text=Hola%20quiero%20informaci%C3%B3n%20sobre%20mi%20web"
@@ -134,7 +116,7 @@ export default function ContactSection() {
                 <Whatsapp className="h-5 w-5" />
                 Escríbenos por WhatsApp
               </Link>
-              <span className="text-xs text-white/50">Horario 9:00–19:00 CET</span>
+               {/*<span className="text-xs text-white/50">Horario 9:00–21:00 CET</span> */}
             </div>
           </div>
         </AnimatedSection>
@@ -297,23 +279,12 @@ export default function ContactSection() {
                 </div>
               </div>
 
-              {/* Consentimiento */}
-              <label className="flex items-start gap-3 text-sm text-white/70 cursor-pointer select-none">
-                <input
-                  type="checkbox"
-                  className="mt-1 h-4 w-4 accent-white"
-                  checked={consent}
-                  onChange={(e) => setConsent(e.target.checked)}
-                />
-                <span>Acepto que contactéis conmigo para evaluar mi proyecto. No compartimos tus datos con terceros.</span>
-              </label>
-
               {/* Botones */}
               <div className="flex flex-col sm:flex-row gap-3 pt-2">
                 <Button
                   type="submit"
-                  disabled={loading || !consent}
-                  className={`flex-1 rounded-xl bg-white text-black hover:bg-stone-100 ${!consent ? "opacity-60 pointer-events-none" : ""}`}
+                  disabled={loading}
+                  className={`flex-1 rounded-xl bg-white text-black hover:bg-stone-100`}
                 >
                   <AnimatePresence mode="wait" initial={false}>
                     {loading ? (

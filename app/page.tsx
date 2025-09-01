@@ -33,9 +33,6 @@ export default function LandingPage() {
         {/* HERO */}
         <HeroAwwwards />
 
-        {/* Divider / transición */}
-        <SeamlessDivider label="Servicios" />
-
         {/* PACKAGES */}
         <div
           id="services"
@@ -51,8 +48,10 @@ export default function LandingPage() {
             "Diseño premium",
             "SEO técnico",
             "Entrega rápida",
-            "UX minimalista",
+            "UX personalizado",
             "Soporte cercano",
+            "Código propio ",
+            "Escalable",
           ]}
         />
 
