@@ -1,6 +1,7 @@
 "use client"
 
 import SplitHeading from "./SplitHeading"
+import GrimloHeroHeader from "./Header"
 
 export default function SectionHeader({
   eyebrow,

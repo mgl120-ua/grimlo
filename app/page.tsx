@@ -33,10 +33,10 @@ export default function LandingPage() {
       >
         
       <GrimloShowcaseES />
-        {/* HERO */}
+        {/* HERO 
         <HeroAwwwards />
 
-        {/* PACKAGES */}
+        {/* PACKAGES 
         <div
           id="services"
           ref={packagesRef}
@@ -45,7 +45,7 @@ export default function LandingPage() {
           <PackageSection packagesRef={packagesRef} />
         </div>
 
-        {/* Ticker compartido */}
+        {/* Ticker compartido 
         <SharedTicker
           items={[
             "Diseño premium",
@@ -58,15 +58,15 @@ export default function LandingPage() {
           ]}
         />
 
-        {/* BENEFITS */}
+        {/* BENEFITS 
         <div id="about" className="scroll-mt-24 md:scroll-mt-28">
           <BenefitsSection />
         </div>
 
-        {/* CONTACT */}
+        {/* CONTACT
         <div id="contact" className="scroll-mt-24 md:scroll-mt-28">
           <ContactSection />
-        </div>
+        </div>*/}
       </main>
     </>
   )

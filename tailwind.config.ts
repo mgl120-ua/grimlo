@@ -69,8 +69,8 @@ const config = {
         'accordion-up': 'accordion-up 0.2s ease-out',
       },
       fontFamily: {
-        sans: ['var(--font-geist-sans)', ...fontFamily.sans],
-        mono: ['var(--font-geist-mono)', ...fontFamily.mono],
+        sans: ['var(--font-sans)', 'ui-sans-serif', 'system-ui', 'sans-serif'],        // Inter
+        display: ['var(--font-display)', 'ui-sans-serif', 'system-ui', 'sans-serif'],  // Space Grotesk
       },
     },
   },

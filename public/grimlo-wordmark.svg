@@ -1,0 +1,22 @@
+<svg width="1280" height="560" viewBox="0 0 1280 560" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">grimlo — wordmark</title>
+  <desc id="desc">Texto blanco “grimlo” en sans bold redondeada, centrado sobre fondo oscuro.</desc>
+
+  <!-- Fondo -->
+  <rect width="1280" height="560" fill="#0E0F10"/>
+
+  <!-- Wordmark -->
+  <text
+    x="50%"
+    y="50%"
+    dominant-baseline="middle"
+    text-anchor="middle"
+    font-family="Space Grotesk, Poppins, Manrope, system-ui, -apple-system, Segoe UI, Arial, sans-serif"
+    font-weight="900"
+    font-size="260"
+    letter-spacing="-6"
+    fill="#FFFFFF"
+  >
+    grimlo
+  </text>
+</svg>
