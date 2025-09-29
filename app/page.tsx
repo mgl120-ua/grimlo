@@ -8,6 +8,7 @@ import TestimonialsSection from "@/components/landing/TestimonialsSection"
 import ContactSection from "@/components/landing/ContactSection"
 import SeamlessDivider from "@/components/landing/SeamlessDivider"
 import SharedTicker from "@/components/landing/SharedTicker"
+import GrimloShowcaseES from "@/components/grimlo/showcase/ShowcaseES"
 
 export default function LandingPage() {
   const packagesRef = useRef<HTMLDivElement | null>(null)
@@ -17,7 +18,7 @@ export default function LandingPage() {
   }, [])
 
   return (
-    <>
+    <>  
       {/* Skip link (a11y) */}
       <a
         href="#main"
@@ -30,6 +31,8 @@ export default function LandingPage() {
         id="main"
         className="flex flex-col min-h-screen bg-black text-white font-sans"
       >
+        
+      <GrimloShowcaseES />
         {/* HERO */}
         <HeroAwwwards />
 

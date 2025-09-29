@@ -89,7 +89,7 @@ export default function PackageSection({ packagesRef }: { packagesRef: React.Ref
     <section
       id="services"
       ref={packagesRef as any}
-      className="relative w-full bg-black pt-24 pb-28 text-white"
+      className="relative w-full neo-bg pt-24 pb-28 text-white"
       aria-labelledby="packages-title"
     >
       {/* fusión con secciones */}
@@ -147,18 +147,20 @@ export default function PackageSection({ packagesRef }: { packagesRef: React.Ref
             <motion.article
               key={pkg.name}
               data-card
-              className="snap-center relative flex-shrink-0 w-[88vw] sm:w-[72vw] md:w-[56vw] lg:w-full
-                         rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md overflow-hidden
-                         shadow-[0_0_40px_-10px_rgba(255,255,255,0.08)] transition-all duration-300
-                         hover:shadow-[0_0_80px_-10px_rgba(255,255,255,0.15)] hover:-translate-y-2
-                         grid grid-rows-[auto_1fr_auto] min-h-[520px] sm:min-h-[540px] p-6 sm:p-7 md:p-8"
+              className="
+                snap-center relative flex-shrink-0 w-[88vw] sm:w-[72vw] md:w-[56vw] lg:w-full
+                rounded-3xl overflow-hidden grid grid-rows-[auto_1fr_auto]
+                min-h-[520px] sm:min-h-[540px] p-6 sm:p-7 md:p-8
+                neo-bg neo-soft transition-transform duration-300
+                focus:outline-none focus:ring-2 focus:ring-white/20
+              "
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: i * 0.08 }}
               viewport={{ once: true, amount: 0.25 }}
               tabIndex={0}
-              aria-label={`Paquete ${pkg.name}`}
             >
+
               {/* glow */}
               <div className="pointer-events-none absolute -inset-px -z-10 rounded-[1.6rem]
                               bg-[radial-gradient(140px_70px_at_20%_0%,rgba(255,255,255,.12),transparent_60%)]
@@ -198,8 +200,7 @@ export default function PackageSection({ packagesRef }: { packagesRef: React.Ref
                 <p className="text-2xl sm:text-3xl font-extrabold mb-3 sm:mb-4">{pkg.price}</p>
                 <Button
                   onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth", block: "start" })}
-                  className="w-full px-5 py-3 rounded-xl font-semibold text-black bg-gradient-to-r from-zinc-200 to-zinc-400 hover:from-white hover:to-zinc-200 shadow-[0_0_30px_-5px_rgba(255,255,255,0.25)] transition"
-                >
+                  className="w-full px-5 py-3 rounded-xl font-semibold text-black bg-white hover:bg-neutral-200">
                   {pkg.cta}
                 </Button>
               </div>
@@ -214,7 +215,7 @@ export default function PackageSection({ packagesRef }: { packagesRef: React.Ref
               key={i}
               onClick={() => go(i)}
               aria-label={`Ir al paquete ${i + 1}`}
-              className={`h-2.5 rounded-full transition-all ${i === active ? "w-6 bg-white" : "w-2.5 bg-white/35 hover:bg-white/60"}`}
+              className={`h-2.5 rounded-full transition-all ${i === active ? "w-6 bg-white/90" : "w-2.5 bg-white/45 hover:bg-white/70"}`}
             />
           ))}
         </div>

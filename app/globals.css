@@ -247,3 +247,104 @@
 .supports-\[backdrop-filter\]\:bg-black\/40 {
   /* Tailwind ya aplica la clase; esto es sólo recordatorio */
 }
+
+/* ===== Grimlo Dark Neo v2 ===== */
+@layer utilities {
+  /* Fondo tipo UI kit (puntos + viñeta) */
+  .bg-ui-dark {
+    background:
+      radial-gradient(900px 500px at 70% 40%, rgba(255,255,255,.06), transparent 65%),
+      radial-gradient(800px 450px at 20% 60%, rgba(255,255,255,.04), transparent 70%),
+      /* patrón puntitos */
+      radial-gradient(rgba(255,255,255,.045) 0.8px, transparent 0.9px);
+    background-size: auto, auto, 14px 14px;
+    background-position: 0 0, 0 0, 0 0;
+    background-color: #1f2327; /* base más fría */
+  }
+
+  /* Card concava: borde suave + doble inner shadow + highlight superior */
+  .neo-card {
+    position: relative;
+    border-radius: 1.5rem;
+    background: #262a2f; /* un poco más claro que el fondo */
+    box-shadow:
+      inset 18px 18px 24px rgba(0,0,0,.55),
+      inset -18px -18px 24px rgba(255,255,255,.04),
+      0 18px 28px rgba(0,0,0,.35);
+    border: 1px solid rgba(255,255,255,.06);
+    overflow: hidden;
+  }
+  .neo-card::before{
+    /* highlight superior para efecto glossy */
+    content:"";
+    position:absolute; inset:0;
+    border-radius: inherit;
+    background:
+      radial-gradient(120% 50% at 50% 0%, rgba(255,255,255,.10), transparent 55%);
+    pointer-events:none;
+  }
+  .neo-card:hover{
+    box-shadow:
+      inset 14px 14px 20px rgba(0,0,0,.55),
+      inset -14px -14px 20px rgba(255,255,255,.05),
+      0 28px 44px rgba(0,0,0,.45);
+    transform: translateY(-2px);
+  }
+
+  /* Anillo azul tipo “hover” de la 2ª imagen */
+  .ring-blue-hover{
+    position: relative;
+    isolation: isolate;
+  }
+  .ring-blue-hover::after{
+    content:"";
+    position:absolute; inset:-1px; border-radius: 0.875rem;
+    background:
+      radial-gradient(60% 60% at 50% 50%,
+        rgba(56,189,248,.55), rgba(56,189,248,.15) 45%, transparent 60%);
+    opacity:0; filter: blur(10px);
+    transition: opacity .25s ease, filter .25s ease;
+    z-index:-1;
+  }
+  .ring-blue-hover:hover::after{ opacity:.9; filter: blur(14px); }
+
+  /* Botón oscuro “pushed/hover” */
+  .btn-dark-neo{
+    background: #1b1e22;
+    border: 1px solid rgba(255,255,255,.08);
+    box-shadow:
+      inset 8px 8px 12px rgba(0,0,0,.6),
+      inset -8px -8px 12px rgba(255,255,255,.04);
+    color:#e9edf1;
+  }
+  .btn-dark-neo:hover{
+    background:#191c20;
+    box-shadow:
+      inset 6px 6px 10px rgba(0,0,0,.6),
+      inset -6px -6px 10px rgba(255,255,255,.05);
+  }
+
+  /* ——— Variante CORTE DIAGONAL (referencia 3) ——— */
+  .diagonal-cut{
+    position: relative; overflow: hidden; border-radius: 1.5rem;
+    background: #262a2f;
+  }
+  .diagonal-cut::before{
+    /* sombra profunda del pliegue */
+    content:""; position:absolute; inset:0;
+    background:
+      conic-gradient(from 210deg at 70% 30%,
+        rgba(0,0,0,.75), rgba(0,0,0,.0) 25% 75%, rgba(0,0,0,.75) 100%);
+    mask: linear-gradient(135deg, black 48%, transparent 49%);
+    pointer-events:none;
+  }
+  .diagonal-cut::after{
+    /* highlight del filo */
+    content:""; position:absolute; inset:0;
+    background:
+      linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,0) 40%);
+    mix-blend-mode: screen;
+    mask: linear-gradient(135deg, black 48%, transparent 49%);
+    pointer-events:none;
+  }
+}
